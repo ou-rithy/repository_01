@@ -1,0 +1,12 @@
+Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*,
+                 HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* |
+Where-Object {
+    $_.DisplayName -and
+    $_.UninstallString -and
+    $_.SystemComponent -ne 1 -and
+    $_.ReleaseType -ne "Update" -and
+    $_.ParentDisplayName -eq $null
+} |
+Select-Object DisplayName, DisplayVersion, Publisher, InstallDate |
+Sort-Object DisplayName |
+Export-Csv "C:\software_inventory.csv" -NoTypeInformation -Encoding UTF8
