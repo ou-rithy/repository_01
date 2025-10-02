@@ -9,4 +9,4 @@ Where-Object {
 } |
 Select-Object DisplayName, DisplayVersion, Publisher, InstallDate |
 Sort-Object DisplayName |
-Export-Csv "C:\software_inventory.csv" -NoTypeInformation -Encoding UTF8
+Export-Csv "C:\software_inventory_2.csv" -NoTypeInformation -Encoding UTF8
